@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from menu_items.views import index
 
 urlpatterns = [
@@ -7,4 +7,5 @@ urlpatterns = [
     path('', index, name='index'),
     path('index', index, name='index'),
     path('index', index, name='test'),
+  
 ]

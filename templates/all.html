@@ -1,0 +1,9 @@
+<li> {{node.name}}
+       <ul>
+            {% for ch in node.submenu_set.all %}
+                {% with node=ch template_name="all.html" %}
+                    {% include template_name %}
+                {% endwith %}
+            {%endfor%}
+        </ul>
+</li>

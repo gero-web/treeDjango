@@ -1,0 +1,9 @@
+
+<nav>
+   <h1> {{ link.name }}</h1>       
+        <ul>
+            {%for node in link.menuitem.submenu_set.all %} 
+                {% include "all.html" %}
+            {%endfor%}
+        </ul>
+<nav/>

@@ -1,6 +1,8 @@
 from django import template
 from menu_items.models import  MenuName,MenuItem
+from django.db.models import Q,F
 from django.db import connection
+
 
 register = template.Library()
 @register.inclusion_tag("menu.html", takes_context=True)
@@ -8,13 +10,13 @@ def menu(context,name):
     request = context.get("request")
     path = request.path 
     
+    link  = MenuItem.objects.filter(name__name=name).prefetch_related('submenu_set')
     
-    link = MenuName.objects.select_related('menuitem').get(name=name)
-    print(link.menuitem.name)
+    print(len(connection.queries))
     return {
         "path": path,
         
-        'link': link,
+        'link': link[0],
         
         
     }

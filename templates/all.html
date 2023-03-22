@@ -1,9 +1,21 @@
-<li> {{node.name}}
-       <ul>
-            {% for ch in node.submenu_set.all %}
-                {% with node=ch template_name="all.html" %}
-                    {% include template_name %}
-                {% endwith %}
-            {%endfor%}
-        </ul>
+<li >
+   
+     <span class="caret 
+        {% if  request.get_full_path in node.name %} 
+           caret-down 
+        {% endif %}">{{node.name}}</span> 
+     <ul class="nested 
+        {% if  request.get_full_path in  node.name %}  
+            active
+        {% endif %}
+     " 
+     >
+     
+        {% for ch in node.submenu_set.all %}
+            {% with node=ch template_name="all.html" %}
+                {% include template_name %}
+            {% endwith %}
+        {% endfor %}
+     </ul>
 </li>
+
